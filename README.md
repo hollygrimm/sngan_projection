@@ -2,6 +2,62 @@
 [sngans]: https://openreview.net/forum?id=B1QRgziT-
 [pcgans]: https://openreview.net/forum?id=ByS1VpgRZ
 
+# Notes from Fork of GANs with spectral normalization with projection discriminator
+
+See original readme below
+
+## Setup on AWS
+```
+source activate tensorflow_p36
+pip install chainer
+pip install cupy
+# Took about 5 minutes to install cupy
+```
+
+## Download Life2Landscape dataset:
+```
+cd datasets
+mkdir life2landscape
+cd life2landscape
+aws s3 cp s3://*****/life2landscape768.tar.xz .
+tar -xvf life2landscape768.tar.xz
+mv testA paintings
+mv testB life_watercolors
+```
+
+## Preprocess dataset:
+```
+cd datasets
+bash preprocess_life2landscape.sh life2landscape/ life2landscape_preprocessed/
+# Make the list of image-label pairs for all images
+python life2landscape.py life2landscape_preprocessed/
+```
+## Download inception model: 
+
+`python source/inception/download.py --outfile=datasets/inception_model`
+
+## Spectral normalization + projection discriminator for 256x256 life2lanscape images:
+```
+python train.py --config=configs/sn_projection_life2landscape.yml --results_dir=results --data_dir=datasets/life2landscape_preprocessed
+```
+## generated images at 250K iterations:
+
+*todo*
+
+## Examples of 64x64 generated images:
+
+*todo*
+
+
+
+
+
+
+
+
+
+# Original README from project
+
 # GANs with spectral normalization and projection discriminator
 *NOTE: The setup and example code in this README are for training GANs on **single GPU**.*
 *The models are smaller than the ones used in the [papers](https://github.com/pfnet-research/sngan_projection/#references).*
