@@ -1,0 +1,13 @@
+# byte-compiled
+__pycache__/
+
+# dataset
+datasets/image_list.txt
+datasets/life2landscape/
+datasets/life2landscape_preprocessed/
+
+# model
+datasets/inception_model
+
+# results
+results/
