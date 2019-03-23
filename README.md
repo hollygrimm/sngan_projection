@@ -41,8 +41,12 @@ python life2landscape.py life2landscape_preprocessed/
 python train.py --config=configs/sn_projection_life2landscape.yml --results_dir=results --data_dir=datasets/life2landscape_preprocessed
 ```
 ## generated images at 250K iterations:
+```
+python evaluations/gen_interpolated_images.py --n_zs=10 --n_intp=10 --classes life_watercolors paintings --config=configs/sn_projection_life2landscape.yml --snapshot=results/ResNetGenerator_250000.npz --results_dir=gen_morphing_images
 
-*todo*
+python evaluations/gen_interpolated_images.py --n_zs=10 --n_intp=10 --classes 0 1 --config=configs/sn_projection_life2landscape.yml --snapshot=results/ResNetGenerator_250000.npz --results_dir=gen_morphing_images
+
+```
 
 ## Examples of 64x64 generated images:
 
